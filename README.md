@@ -101,7 +101,7 @@ check-out [`docs/data_dictionary.md`](./docs/data_dictionary.md) to know more ab
 7 source CSVs staged in S3 (`contoso-dataset/source/`) — the pipeline entry point.
 Snowflake reads directly from this bucket via IAM Role + External Stage, with no manual file movement.
 
-![S3 Raw Data](/docs/screenshots/contoso_dataset_s3_bucket.png)
+![S3 Raw Data](/docs/screenshots/source_dataset_s3_bucket.png)
 
 
 
