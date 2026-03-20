@@ -1,6 +1,7 @@
 <div align="center">
 
-# Contoso Retail Analytics Pipeline
+<img width="1525" height="148" alt="image" src="https://github.com/user-attachments/assets/0b20f0e2-1d2e-4369-8210-3a73fbacbdc2" />
+
 
 #### *End-to-end batch pipeline | dbt + Snowflake + AWS S3 + Apache Airflow | Medallion Architecture | 3.5M+ records*
 
