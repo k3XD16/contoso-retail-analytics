@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: bronze
+    database: DEV_CONTOSO_RETAIL
+    schema: BRONZE
+    tables:
+      - name: BRONZE_CURRENCYEXCHANGE
+      - name: BRONZE_DATE
+      - name: BRONZE_ORDERROWS
+      - name: BRONZE_ORDERS
+      - name: BRONZE_PRODUCT
+      - name: BRONZE_STORE
+      - name: BRONZE_CUSTOMER
