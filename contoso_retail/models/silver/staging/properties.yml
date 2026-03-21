@@ -1,0 +1,108 @@
+version: 2
+
+models:
+  - name: stg_orders
+    columns:
+      - name: order_key
+        tests:
+          - unique
+          - not_null
+      - name: customer_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customer')
+              field: customer_key
+      - name: store_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_store')
+              field: store_key
+      - name: order_date
+        tests:
+          - not_null
+      - name: currency_code
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['USD', 'GBP', 'EUR', 'AUD', 'CAD']
+
+  - name: stg_orderrows
+    columns:
+      - name: order_key
+        tests:
+          - not_null
+      - name: product_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_product')
+              field: product_key
+      - name: quantity
+        tests:
+          - not_null
+      - name: net_revenue
+        tests:
+          - not_null
+
+  - name: stg_customer
+    columns:
+      - name: customer_key
+        tests:
+          - unique
+          - not_null
+      - name: country_code
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['AU', 'CA', 'DE', 'FR', 'IT', 'NL', 'GB', 'US']
+
+  - name: stg_product
+    columns:
+      - name: product_key
+        tests:
+          - unique
+          - not_null
+      - name: price
+        tests:
+          - not_null
+      - name: cost
+        tests:
+          - not_null
+
+  - name: stg_store
+    columns:
+      - name: store_key
+        tests:
+          - unique
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['Active', 'Closed', 'Restructured']
+
+  - name: stg_date
+    columns:
+      - name: date_key
+        tests:
+          - unique
+          - not_null
+      - name: date_value
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_currencyexchange
+    columns:
+      - name: exchange_date
+        tests:
+          - not_null
+      - name: from_currency
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['USD', 'GBP', 'EUR', 'AUD', 'CAD']
+      - name: exchange_rate
+        tests:
+          - not_null
