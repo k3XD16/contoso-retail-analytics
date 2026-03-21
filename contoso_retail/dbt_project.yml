@@ -1,0 +1,54 @@
+name: 'contoso_retail'
+version: '1.0.0'
+config-version: 2
+
+profile: 'contoso_retail'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  contoso_retail:
+    bronze:
+      +materialized: table
+      +database: DEV_CONTOSO_RETAIL
+      +schema: BRONZE
+    silver:
+      staging:
+        +materialized: view
+        +database: DEV_CONTOSO_RETAIL
+        +schema: SILVER
+      intermediate:
+        +materialized: ephemeral
+        +database: DEV_CONTOSO_RETAIL
+        +schema: SILVER
+    gold:
+      dimensions:
+        +materialized: table
+        +database: DEV_CONTOSO_RETAIL
+        +schema: GOLD
+      facts:
+        +materialized: incremental
+        +database: DEV_CONTOSO_RETAIL
+        +schema: GOLD
+        +unique_key: order_key
+      analytics:
+        +materialized: table
+        +database: DEV_CONTOSO_RETAIL
+        +schema: GOLD
+seeds:
+  contoso_retail:
+    +database: DEV_CONTOSO_RETAIL   
+    +schema: SILVER             
+vars:
+  start_date: '2016-01-01'
+  currency_base: 'USD'
