@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: fact_sales
+    columns:
+      - name: order_key
+        tests:
+          - not_null
+      - name: customer_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_key
+      - name: product_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_key
+      - name: store_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_stores')
+              field: store_key
+      - name: quantity
+        tests:
+          - not_null
+      - name: net_revenue
+        tests:
+          - not_null
+
+  - name: dim_customers
+    columns:
+      - name: customer_key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_products
+    columns:
+      - name: product_key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_stores
+    columns:
+      - name: store_key
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_date
+    columns:
+      - name: date_key
+        tests:
+          - unique
+          - not_null
