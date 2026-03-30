@@ -32,6 +32,8 @@ An ELT pipeline implementing **Medallion Architecture (Bronze → Silver → Gol
 
 ## Architecture
 
+![architecture](https://github.com/user-attachments/assets/ac8a7377-4606-4e6d-8b87-306a6b43ba5c)
+
 ```
 AWS S3 (Raw CSVs)
     ↓  IAM Role + External Stage
@@ -52,10 +54,6 @@ Apache Airflow DAG (Docker) — orchestrates all 8 tasks
     [Task 7] dbt_test           → Execute all 46 data quality tests
     [Task 8] dbt_docs_generate  → Auto-generate dbt lineage documentation
 ```
-
-**Architecture Diagram**
-
-![Architecture](/docs/screenshots/contoso_architecture_diagram.png)
 
 ---
 
